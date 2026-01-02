@@ -1,6 +1,6 @@
 package com.example.myfirebase.modeldata
 
-data class Siswa(
+data class S iswa(
     val id: Long = 0,
     val nama: String = "",
     val alamat: String = "",
