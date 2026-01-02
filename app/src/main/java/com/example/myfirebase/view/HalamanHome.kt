@@ -42,7 +42,7 @@ import com.example.myfirebase.viewmodel.StatusUiSiswa
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(
+fun Home//Screen(
     navigateToItemEntry: () -> Unit,
     navigateToItemUpdate: (String) -> Unit,
     modifier: Modifier = Modifier,
