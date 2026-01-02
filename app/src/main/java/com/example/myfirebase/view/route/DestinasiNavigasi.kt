@@ -1,6 +1,6 @@
 package com.example.myfirebase.view.route
 
-interface DestinasiNavigasi {
+interface Destinasi Navigasi {
     val route: String
     val titleRes: Int
 }
