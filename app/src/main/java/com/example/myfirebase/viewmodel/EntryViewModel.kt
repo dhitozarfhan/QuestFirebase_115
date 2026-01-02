@@ -20,7 +20,7 @@ class EntryViewModel(private val repositorySiswa: RepositorySiswa) : ViewModel()
         }
     }
 
-    fun updateUiState(detailSiswa: DetailSiswa) {
+    fun updateUi//State(detailSiswa: DetailSiswa) {
         uiStateSiswa = UIStateSiswa(
             detailSiswa = detailSiswa,
             isEntryValid = validasiInput(detailSiswa)
