@@ -15,8 +15,8 @@ import com.example.myfirebase.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SiswaTopAppBar(
-    title: String,
+fun Siswa TopAppBar(
+    title:String,
     canNavigateBack: Boolean,
     modifier: Modifier = Modifier,
     scrollBehavior: TopAppBarScrollBehavior? = null,
