@@ -9,7 +9,7 @@ import com.example.myfirebase.modeldata.UIStateSiswa
 import com.example.myfirebase.modeldata.toDataSiswa
 import com.example.myfirebase.repositori.RepositorySiswa
 
-class EntryViewModel(private val repositorySiswa: RepositorySiswa) : ViewModel() {
+class Entry ViewModel(private val repositorySiswa: RepositorySiswa) : ViewModel() {
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
 
@@ -20,7 +20,7 @@ class EntryViewModel(private val repositorySiswa: RepositorySiswa) : ViewModel()
         }
     }
 
-    fun updateUi//State(detailSiswa: DetailSiswa) {
+    fun updateUiState(detailSiswa: DetailSiswa) {
         uiStateSiswa = UIStateSiswa(
             detailSiswa = detailSiswa,
             isEntryValid = validasiInput(detailSiswa)
