@@ -42,13 +42,13 @@ import com.example.myfirebase.viewmodel.StatusUiSiswa
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Home//Screen(
+fun HomeScreen(
     navigateToItemEntry: () -> Unit,
     navigateToItemUpdate: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -71,10 +71,10 @@ fun Home//Screen(
             }
         },
     ) { innerPadding ->
-        val statusUiSiswa = viewModel.statusUiSiswa
         HomeBody(
-            statusUiSiswa = statusUiSiswa,
+            statusUiSiswa = viewModel.statusUiSiswa,
             onSiswaClick = navigateToItemUpdate,
+            onRetryClick = { viewModel.getSiswa() },
             modifier = Modifier.padding(innerPadding)
         )
     }
@@ -84,6 +84,7 @@ fun Home//Screen(
 fun HomeBody(
     statusUiSiswa: StatusUiSiswa,
     onSiswaClick: (String) -> Unit,
+    onRetryClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -107,7 +108,7 @@ fun HomeBody(
                 }
             }
             is StatusUiSiswa.Error -> ErrorScreen(
-                retryAction = {}, 
+                retryAction = onRetryClick,
                 modifier = Modifier.fillMaxSize()
             )
         }
@@ -122,7 +123,6 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CircularProgressIndicator()
-        Text(text = "Loading...", modifier = Modifier.padding(top = 8.dp))
     }
 }
 
@@ -133,9 +133,9 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = stringResource(R.string.gagal), modifier = Modifier.padding(16.dp))
+        Text(text = stringResource(R.string.gagal_memuat), modifier = Modifier.padding(16.dp))
         Button(onClick = retryAction) {
-            Text(stringResource(R.string.retry))
+            Text(stringResource(R.string.coba_lagi))
         }
     }
 }
@@ -156,6 +156,7 @@ fun ListSiswa(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable { onSiswaClick(person) }
+                    .padding(dimensionResource(id = R.dimen.padding_small))
             )
         }
     }
@@ -167,7 +168,7 @@ fun ItemSiswa(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier.padding(dimensionResource(id = R.dimen.padding_small)),
+        modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(
