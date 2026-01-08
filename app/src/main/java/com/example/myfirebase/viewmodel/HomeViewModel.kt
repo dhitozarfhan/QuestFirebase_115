@@ -16,15 +16,15 @@ sealed interface StatusUiSiswa {
     object Loading : StatusUiSiswa
 }
 
-class HomeVie//wModel(private val repositorySiswa: RepositorySiswa) : ViewModel() {
+class HomeViewModel(private val repositorySiswa: RepositorySiswa) : ViewModel() {
     var statusUiSiswa: StatusUiSiswa by mutableStateOf(StatusUiSiswa.Loading)
         private set
 
     init {
-        loadSiswa()
+        getSiswa()
     }
 
-    fun loadSiswa() {
+    fun getSiswa() {
         viewModelScope.launch {
             statusUiSiswa = StatusUiSiswa.Loading
             statusUiSiswa = try {
