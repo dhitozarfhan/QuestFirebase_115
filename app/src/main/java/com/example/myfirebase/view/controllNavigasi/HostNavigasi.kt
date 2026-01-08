@@ -24,7 +24,7 @@ fun DataSiswaApp(navController: NavHostController = rememberNavController(), mod
 
 @Composable
 fun HostNavigasi(
-    navController: Na vHostController,
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     NavHost(
